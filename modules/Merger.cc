@@ -27,8 +27,6 @@
 
 #include "modules/Merger.h"
 
-#include <utility>
-
 #include "classes/DelphesClasses.h"
 #include "classes/DelphesFactory.h"
 #include "classes/DelphesFormula.h"
@@ -49,6 +47,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 
@@ -83,7 +82,7 @@ void Merger::Init()
     array = ImportArray(param[i].GetString());
     iterator.reset(array->MakeIterator());
 
-    fInputList.push_back(std::move(iterator));
+    fInputList.push_back(move(iterator));
   }
 
   // create output arrays

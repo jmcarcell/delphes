@@ -26,8 +26,6 @@
 
 #include "modules/FastJetFinder.h"
 
-#include <utility>
-
 #include "classes/DelphesClasses.h"
 #include "classes/DelphesFactory.h"
 #include "classes/DelphesFormula.h"
@@ -49,6 +47,7 @@
 #include <memory>
 #include <sstream>
 #include <stdexcept>
+#include <utility>
 #include <vector>
 
 #include "fastjet/ClusterSequence.hh"
@@ -276,7 +275,7 @@ void FastJetFinder::Init()
       entry.estimator = make_unique<JetMedianBackgroundEstimator>(SelectorRapRange(etaMin, etaMax), *fDefinition, *fAreaDefinition);
       entry.etaMin = etaMin;
       entry.etaMax = etaMax;
-      fEstimators.push_back(std::move(entry));
+      fEstimators.push_back(move(entry));
     }
   }
 

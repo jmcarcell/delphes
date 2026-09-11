@@ -27,8 +27,6 @@
 
 #include "modules/IdentificationMap.h"
 
-#include <utility>
-
 #include "classes/DelphesClasses.h"
 #include "classes/DelphesFactory.h"
 #include "classes/DelphesFormula.h"
@@ -50,6 +48,7 @@
 #include <memory>
 #include <sstream>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 
@@ -84,7 +83,7 @@ void IdentificationMap::Init()
     formula = make_unique<DelphesFormula>();
     formula->Compile(param[i * 3 + 2].GetString());
     pdg = param[i * 3].GetInt();
-    fEfficiencyMap.insert(make_pair(pdg, make_pair(param[i * 3 + 1].GetInt(), std::move(formula))));
+    fEfficiencyMap.insert(make_pair(pdg, make_pair(param[i * 3 + 1].GetInt(), move(formula))));
   }
 
   // set default efficiency formula
@@ -94,7 +93,7 @@ void IdentificationMap::Init()
     formula = make_unique<DelphesFormula>();
     formula->Compile("1.0");
 
-    fEfficiencyMap.insert(make_pair(0, make_pair(0, std::move(formula))));
+    fEfficiencyMap.insert(make_pair(0, make_pair(0, move(formula))));
   }
 
   // import input array

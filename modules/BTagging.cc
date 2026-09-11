@@ -28,8 +28,6 @@
 
 #include "modules/BTagging.h"
 
-#include <utility>
-
 #include "classes/DelphesClasses.h"
 #include "classes/DelphesFactory.h"
 #include "classes/DelphesFormula.h"
@@ -47,6 +45,7 @@
 #include <memory>
 #include <sstream>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 
@@ -83,7 +82,7 @@ void BTagging::Init()
     formula = make_unique<DelphesFormula>();
     formula->Compile(param[i * 2 + 1].GetString());
 
-    fEfficiencyMap[param[i * 2].GetInt()] = std::move(formula);
+    fEfficiencyMap[param[i * 2].GetInt()] = move(formula);
   }
 
   // set default efficiency formula
@@ -93,7 +92,7 @@ void BTagging::Init()
     formula = make_unique<DelphesFormula>();
     formula->Compile("0.0");
 
-    fEfficiencyMap[0] = std::move(formula);
+    fEfficiencyMap[0] = move(formula);
   }
 
   // import input array(s)
