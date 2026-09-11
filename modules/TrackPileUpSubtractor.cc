@@ -26,6 +26,8 @@
 
 #include "modules/TrackPileUpSubtractor.h"
 
+#include <utility>
+
 #include "classes/DelphesClasses.h"
 #include "classes/DelphesFactory.h"
 #include "classes/DelphesFormula.h"
@@ -92,7 +94,7 @@ void TrackPileUpSubtractor::Init()
     array = ImportArray(param[i * 2].GetString());
     entry.iterator.reset(array->MakeIterator());
     entry.array = ExportArray(param[i * 2 + 1].GetString());
-    fInputList.push_back(move(entry));
+    fInputList.push_back(std::move(entry));
   }
 }
 
